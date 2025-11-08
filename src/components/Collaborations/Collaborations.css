@@ -34,9 +34,10 @@
   border-radius: 0;
   transition: color .12s ease;
   min-width: 0;
+  font-family: inherit;
 }
 .collab-item:hover, .collab-item:focus {
-  color: #ffd;
+  color: #FF4040;
   text-decoration: underline;
 }
 

@@ -13,11 +13,12 @@ export const Hero: React.FC = () => {
   }, []);
 
   const scrollToProducts = () => {
-    const headerOffset = 64;
     const target = document.getElementById("products");
-    if (!target) return;
-    const y = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-    window.scrollTo({ top: y, behavior: "smooth" });
+    if (!target) {
+      console.error("Element with id 'products' not found.");
+      return;
+    }
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
