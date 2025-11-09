@@ -29,7 +29,7 @@ export const Hero: React.FC = () => {
             Welcome to Ever Age Accessories, a visionary brand specializing in 3D printed accessories.
             Explore our unique collection of 3D printed lighter cases and jewelry.
           </p>
-          <button className="hero-cta" onClick={scrollToProducts}>Buy smth</button>
+          <button className="hero-cta" onClick={scrollToProducts}>BUY SMTH</button>
         </div>
       </div>
 

@@ -1,9 +1,10 @@
 import React from "react";
 import "./ProductSection.css";
+import { Link } from "react-router-dom";
 
 type Product = { id: string; name: string; price: number; image?: string };
 
-const SAMPLE_PRODUCTS: Product[] = [
+export const products: Product[] = [
   { id: "p1", name: "Product One", price: 19.99, image: "/placeholder.png" },
   { id: "p2", name: "Product Two", price: 29.99, image: "/placeholder.png" },
   { id: "p3", name: "Product Three", price: 39.99, image: "/placeholder.png" },
@@ -20,14 +21,14 @@ export const ProductsSection: React.FC = () => {
       <div className="products-inner">
         <h2 className="products-title">Products</h2>
         <div className="products-grid">
-          {SAMPLE_PRODUCTS.map((p) => (
-            <article key={p.id} className="product-card">
+          {products.map((p) => (
+            <Link to={`/product/${p.id}`} key={p.id} className="product-card">
               <div className="product-thumb" style={{ backgroundImage: `url(${p.image})` }} />
               <div className="product-body">
                 <div className="product-name">{p.name}</div>
                 <div className="product-price">{p.price.toFixed(2)} ₽</div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
