@@ -120,3 +120,7 @@
 .cart-remove { margin-left:auto; background:#ef5350; color:#fff; border:none; padding:6px 8px; border-radius:6px; cursor:pointer; }
 .cart-empty { padding:16px; text-align:center; color:#666; }
 /* ...existing code... */
+
+.header-logo.white {
+  filter: brightness(0) invert(1); /* Делает логотип белым */
+}
