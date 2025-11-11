@@ -58,4 +58,21 @@ export const products: Product[] = [
     image: "/products/product-three.jpg",
     available: false,
 },
+
+  {
+    id: "p7",
+    title: "Product Two",
+    price: 49,
+    shortDescription: "Short description for product two.",
+    image: "/products/product-two.jpg",
+    available: true,
+  },
+  {
+    id: "p8",
+    title: "Product Three",
+    price: 79,
+    shortDescription: "Short description for product three.",
+    image: "/products/product-three.jpg",
+    available: false,
+  },
 ];
