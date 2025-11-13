@@ -15,11 +15,9 @@
   justify-content: center;
 }
 .info-left .gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  max-width: 640px;
 }
 .info-left img {
   width: 100%;
@@ -31,8 +29,7 @@
 
 /* правая часть — текст */
 .info-right {
-  flex: 0 0 360px;
-  max-width: 360px;
+  flex: 0 0 40%;
   padding: 8px 12px;
   box-sizing: border-box;
   position: sticky;
@@ -46,7 +43,7 @@
 }
 
 .info-right .lead {
-  margin: 0 0 12px 0;
+  margin: 0 0 24px 0;
   color: rgba(0,0,0,0.75);
 }
 

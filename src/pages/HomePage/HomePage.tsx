@@ -5,6 +5,7 @@ import Collaborations from "../../components/Collaborations/Collaborations.tsx";
 import { Footer } from "../../components/Footer/Footer.tsx";
 
 
+
 export const HomePage: React.FC = () => {
   return (
     <>

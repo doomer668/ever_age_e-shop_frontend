@@ -1,33 +1,35 @@
 import React from "react";
 import "./InfoPage.css";
+import { Link } from "react-router-dom";
 
 const InfoPage: React.FC = () => {
   return (
     <main className="info-page">
       <div className="info-left">
         <div className="gallery">
-          <img src="/placeholder.png" alt="Info image 1" />
-          <img src="/placeholder.png" alt="Info image 2" />
+          <img src="public/info-1.jpg" alt="Info image 1" />
         </div>
       </div>
 
       <aside className="info-right">
         <h1>Information</h1>
         <p className="lead">
-          Краткое введение — пара предложений о компании/продукте/политике.
+          Doing Stuff
         </p>
 
         <section>
-          <h2>Details</h2>
+          <h1>Details</h1>
           <p>
-            Здесь подробный текст. Используйте заголовки и абзацы для удобного чтения.
+            You can order only around Czech Republic now. Delivery is done via
+            Zasilkovna. For more information, please contact our
+            support. 
           </p>
         </section>
 
         <section>
-          <h2>More</h2>
+          <h1>More</h1>
           <p>
-            Дополнительная информация, контакты, ссылки и т.д.
+            <Link to="https://www.instagram.com/5imon.lukac">Instagram</Link>
           </p>
         </section>
       </aside>

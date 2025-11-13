@@ -6,6 +6,7 @@ import  InfoPage  from "./pages/InfoPage/InfoPage";
 import { HomePage } from "./pages/HomePage/HomePage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.tsx";
+import CollabPage from "./pages/CollabPage/CollabPage.tsx";
 
 const App: React.FC = () => {
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -32,6 +33,7 @@ const App: React.FC = () => {
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/info" element={<InfoPage />} />
+              <Route path="/collab/:id" element={<CollabPage />} />
             </Routes>
           </main>
         </CartProvider>
