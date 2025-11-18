@@ -1,0 +1,83 @@
+.product-page {
+    display: flex;
+    height: 100%;
+}
+
+.product-left {
+    flex: 1;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    scrollbar-width: none; /* Для Firefox */
+    -ms-overflow-style: none; /* Для IE и Edge */
+}
+
+.product-left::-webkit-scrollbar {
+    display: none; /* Для Chrome, Safari и Opera */
+}
+
+.product-images {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-right {
+    flex: 0 0 40%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    height: 100vh; /* Убедитесь, что высота занимает весь экран */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Изменено с flex-end на flex-start */
+    overflow-y: auto; /* Добавлено для предотвращения переполнения */
+    overflow: none;
+}
+
+.product-info {
+    text-align: left;
+}
+
+.product-title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.product-description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.product-availability {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.add-to-cart-btn {
+    background-color: transparent;
+    color: #ff4040;
+    border: 2px solid #ff4040;
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.add-to-cart-btn:hover {
+    border: 2px solid transparent;
+    text-decoration: underline;
+
+}
