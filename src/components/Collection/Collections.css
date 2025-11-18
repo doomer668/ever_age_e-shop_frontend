@@ -1,0 +1,234 @@
+.collections-section {
+  padding: 28px 12px;
+  box-sizing: border-box;
+}
+
+.collections-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.collections-title {
+  margin: 0 0 16px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* layout wrapper that switches between single-column stacked view and two-column view */
+.collections-layout {
+  display: block;
+}
+
+/* LEFT: when collapsed (no active collection) the list is stacked full width */
+.collections-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* each collection card full-width by default */
+.collection-card {
+  position: relative;
+  height: 200px;
+  border-radius: 8px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 180ms ease, box-shadow 180ms ease, height 180ms ease;
+}
+
+/* overlay + title inside card */
+.collection-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.48));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 200ms ease;
+}
+
+.collection-name {
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 8px 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+/* hover/focus effect */
+.collection-card:focus,
+.collection-card:hover {
+  transform: translateY(-4px);
+  outline: none;
+}
+
+/* ACTIVE indicator: thin colored bar on the left of active card */
+.collection-card.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: #FF4040;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  z-index: 2;
+}
+
+/* When a collection is active — switch to two-column layout:
+   left column is narrow vertical list, right column shows products. */
+.collections-inner.expanded .collections-layout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* narrow left column */
+.collections-inner.expanded .collections-list {
+  flex: 0 0 320px;
+  max-width: 320px;
+}
+
+/* when in left column, collection cards become compact horizontal rows */
+.collections-inner.expanded .collection-card {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 16px;
+  background-position: center left;
+  background-size: cover;
+}
+
+/* smaller title when compact */
+.collections-inner.expanded .collection-name {
+  font-size: 0.95rem;
+  text-align: left;
+  margin-left: 12px;
+}
+
+/* right products panel */
+.collection-products {
+  flex: 1 1 auto;
+  margin-top: 0;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: rgba(255,255,255,0.02);
+  position: relative;
+  overflow: hidden;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+/* when has bg image show it */
+.collection-products.has-bg {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+/* overlay for readability */
+.collection-products.has-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.36), rgba(0,0,0,0.6));
+  pointer-events: none;
+}
+
+/* ensure content above overlay */
+.collection-products .collection-products-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.collection-products-title {
+  margin: 0 0 12px 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: inherit;
+}
+
+/* products grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  align-items: stretch;
+}
+
+/* product card */
+.product-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.95);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.product-thumb {
+  width: 100%;
+  padding-top: 75%;
+  background-position: center;
+  background-size: cover;
+}
+
+.product-info {
+  padding: 8px 10px;
+}
+
+.product-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: Black;
+}
+
+.product-price {
+  font-size: 0.9rem;
+  color: rgba(0,0,0,0.6);
+}
+
+/* responsive: on small screens keep stacked and products panel below */
+@media (max-width: 900px) {
+  .collections-inner.expanded .collections-layout {
+    width: 100vw;
+    flex-direction: column;
+  }
+  .collections-inner.expanded .collections-list {
+    width: 100vw;
+    flex: none;
+    order: 0;
+  }
+  .collection-products {
+    order: 1;
+  }
+  .collections-inner.expanded .collection-card {
+    height: 160px;
+    padding-left: 0;
+    justify-content: center;
+  }
+  .collections-inner.expanded .collection-name {
+    text-align: center;
+    margin-left: 0;
+  }
+}
