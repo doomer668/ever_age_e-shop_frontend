@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# ===== For Windows Users =====
+# 1. Download ffmpeg from https://ffmpeg.org/download.html
+# 2. Unarchive to C:\Program Files\ffmpeg\
+# 3. Add to PATH:
+#    Windows → Settings → System → Advanced → Environment Variables
+#    Path → add: C:\Program Files\ffmpeg\bin
+
+# 4. Check in Git Bash
+# ffmpeg -version
+# GitBash should see ffmpeg now and run script from git bash terminal
+
 # ============================================
 # Video Compression Script
 # ============================================
