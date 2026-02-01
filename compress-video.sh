@@ -37,7 +37,7 @@ if [ ! -d "$VIDEOS_DIR" ]; then
     exit 1
 fi
 
-# Создать временную папку
+# Create temp directory
 mkdir -p "$TEMP_DIR"
 
 # ============================================
