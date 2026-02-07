@@ -158,6 +158,8 @@ jobs:
       github.ref == 'refs/heads/main'
     environment:
       name: development
+    permissions:
+      contents: write
 
     steps:
       - name: Deploy to DEV Server
