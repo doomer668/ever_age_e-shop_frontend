@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { productApi }  from "../../services/api.ts";
 import { useCart } from "../../context/CartContext";
 import type { Product } from "../../data/products.ts";
-// import "./ProductPage.css";
+import "./ProductPage.css";
 
 const ProductPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
