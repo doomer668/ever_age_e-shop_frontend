@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { productApi }  from "../../services/api.ts";
-import { useCart } from "../../context/CartContext";
-import type { Product } from "../../data/products.ts";
+import { productApi }  from "@/services/api.ts";
+import { useCart } from "@/hooks/useCart";
+import type { Product } from "@/data/products.ts";
 import "./ProductPage.css";
 
 const ProductPage: React.FC = () => {
