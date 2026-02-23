@@ -1,17 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { products } from "@/data/products.ts";
+import { products, type Product } from "@/data/products.ts";
 import "./Collections.css";
-
-// Define proper types
-interface Product {
-  id: string | number;
-  title: string;
-  price?: number;
-  image?: string;
-  images?: string[];
-  collection?: string;
-}
 
 interface CollectionGroup {
   name: string;
@@ -31,10 +21,10 @@ export default function Collections() {
   }, []);
 
   const collections = useMemo(() => {
-    const groups = (products as Product[]).reduce<Record<string, string[]>>((acc, p) => {
+    const groups = products.reduce<Record<string, string[]>>((acc, p: Product) => {
       const key = p.collection;
       if (!key) return acc;
-      const img = p.images?.[0] ?? p.image ?? "/placeholder.png";
+      const img = p.imageUrls?.[0] ?? "/placeholder.png";
       (acc[key] ||= []).push(img);
       return acc;
     }, {});
@@ -58,9 +48,9 @@ export default function Collections() {
             <div className="collections-list" role="list">
               {collections.map((c) => {
                 const isActive = c.name === activeCollection;
-                const productsForThis = (products as Product[]).filter((p) => p.collection === c.name);
+                const productsForThis = products.filter((p: Product) => p.collection === c.name);
                 return (
-                    <div key={c.name} role="listitem" className={`collection-block`}>
+                    <div key={c.name} role="listitem" className="collection-block">
                       <div
                           className={`collection-card ${isActive ? "active" : ""}`}
                           style={{ backgroundImage: `url(${c.img})` }}
@@ -90,17 +80,15 @@ export default function Collections() {
                             <div className="collection-products-inner">
                               <h3 className="collection-products-title">Products — {c.name}</h3>
                               <div className="products-grid">
-                                {productsForThis.map((p) => (
-                                    <Link key={p.id} to={`/product/${p.id}`} className="product-card">
+                                {productsForThis.map((p: Product) => (
+                                    <Link key={p.uuid} to={`/product/${p.uuid}`} className="product-card">
                                       <div
                                           className="product-thumb"
-                                          style={{ backgroundImage: `url(${p.images?.[0] ?? p.image ?? "/placeholder.png"})` }}
+                                          style={{ backgroundImage: `url(${p.imageUrls?.[0] ?? "/placeholder.png"})` }}
                                       />
                                       <div className="product-info">
-                                        <div className="product-title">{p.title}</div>
-                                        {typeof p.price !== "undefined" && (
-                                            <div className="product-price">{Number(p.price).toFixed(2)} ₽</div>
-                                        )}
+                                        <div className="product-title">{p.name}</div>
+                                        <div className="product-price">{Number(p.price).toFixed(2)} ₽</div>
                                       </div>
                                     </Link>
                                 ))}
@@ -113,7 +101,7 @@ export default function Collections() {
               })}
             </div>
 
-            {/* desktop: products panel shows at the right as before */}
+            {/* desktop: products panel shows at the right */}
             {!isMobile && activeCollection && (
                 <div
                     className="collection-products has-bg"
@@ -123,19 +111,17 @@ export default function Collections() {
                   <div className="collection-products-inner">
                     <h3 className="collection-products-title">Products — {activeCollection}</h3>
                     <div className="products-grid">
-                      {(products as Product[])
-                          .filter((p) => p.collection === activeCollection)
-                          .map((p) => (
-                              <Link key={p.id} to={`/product/${p.id}`} className="product-card">
+                      {products
+                          .filter((p: Product) => p.collection === activeCollection)
+                          .map((p: Product) => (
+                              <Link key={p.uuid} to={`/product/${p.uuid}`} className="product-card">
                                 <div
                                     className="product-thumb"
-                                    style={{ backgroundImage: `url(${p.images?.[0] ?? p.image ?? "/placeholder.png"})` }}
+                                    style={{ backgroundImage: `url(${p.imageUrls?.[0] ?? "/placeholder.png"})` }}
                                 />
                                 <div className="product-info">
-                                  <div className="product-title">{p.title}</div>
-                                  {typeof p.price !== "undefined" && (
-                                      <div className="product-price">{Number(p.price).toFixed(2)} ₽</div>
-                                  )}
+                                  <div className="product-title">{p.name}</div>
+                                  <div className="product-price">{Number(p.price).toFixed(2)} ₽</div>
                                 </div>
                               </Link>
                           ))}

@@ -10,6 +10,8 @@ export type Product = {
   collection?: string;
 };
 
+export const products: Product[] = [];
+
 
 // export const products: Product[] = [
 //   {
