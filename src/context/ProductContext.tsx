@@ -1,18 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import type { Product } from "../data/products";
+import React, { useEffect, useState } from "react";
 import { productApi } from "../services/api";
-
-type ProductContextType = {
-  products: Product[];
-  loading: boolean;
-  error: string | null;
-  getProductById: (id: string) => Product | undefined;
-};
-
-const ProductContext = createContext<ProductContextType | undefined>(undefined);
+import { ProductContext } from "./productContext";
+import type { ProductContextType } from "./productContext";
 
 export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductContextType["products"]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -40,12 +32,4 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
       {children}
     </ProductContext.Provider>
   );
-};
-
-export const useProducts = () => {
-  const context = useContext(ProductContext);
-  if (!context) {
-    throw new Error("useProducts must be used within ProductProvider");
-  }
-  return context;
 };
