@@ -1,7 +1,7 @@
 .product-page {
     display: flex;
-    height: calc(100vh - 64px);
-    margin-top: 64px;
+    height: calc(100vh - var(--header-height));
+    margin-top: var(--header-height);
 }
 
 .product-left {
@@ -37,8 +37,8 @@
     padding: 20px;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     position: sticky;
-    top: 64px;
-    height: calc(100vh - 64px);
+    top: var(--header-height);
+    height: calc(100vh - var(--header-height));
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
