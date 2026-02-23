@@ -1,18 +1,19 @@
 .product-page {
     display: flex;
-    height: 100%;
+    height: calc(100vh - 64px);
+    margin-top: 64px;
 }
 
 .product-left {
     flex: 1;
     overflow-y: auto;
     background-color: #f9f9f9;
-    scrollbar-width: none; /* Для Firefox */
-    -ms-overflow-style: none; /* Для IE и Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .product-left::-webkit-scrollbar {
-    display: none; /* Для Chrome, Safari и Opera */
+    display: none;
 }
 
 .product-images {
@@ -36,13 +37,12 @@
     padding: 20px;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     position: sticky;
-    top: 0;
-    height: 100vh; /* Убедитесь, что высота занимает весь экран */
+    top: 64px;
+    height: calc(100vh - 64px);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Изменено с flex-end на flex-start */
-    overflow-y: auto; /* Добавлено для предотвращения переполнения */
-    overflow: none;
+    justify-content: flex-start;
+    overflow-y: auto;
 }
 
 .product-info {
