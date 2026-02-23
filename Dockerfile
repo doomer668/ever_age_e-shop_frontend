@@ -25,8 +25,8 @@ FROM nginx:1.25-alpine
 # Copy built files from build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Copy custom nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy custom nginx configuration as template
+COPY nginx.conf /etc/nginx/conf.d/default.conf.template
 
 # Expose port 80
 EXPOSE 80
@@ -34,8 +34,6 @@ EXPOSE 80
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:80/health || exit 1
-#HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-#  CMD wget --no-verbose --tries=1 --spider http://localhost:80/health || exit 1
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Substitute env vars and start nginx
+CMD ["/bin/sh", "-c", "envsubst '${BACKEND_URL}' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]

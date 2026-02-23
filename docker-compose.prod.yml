@@ -5,6 +5,8 @@ services:
   frontend-service:
     image: ${FRONTEND_DOCKER_REGISTRY}/${FRONTEND_IMAGE_NAME}:${FRONTEND_IMAGE_TAG}
     container_name: everage-frontend-dev
+    environment:
+      - BACKEND_URL=http://${SERVER_IP}:8080
     ports:
       - "80:80"
     volumes:
