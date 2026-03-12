@@ -2,6 +2,9 @@
     display: flex;
     gap: 20px;
     padding: 20px;
+    margin-top: var(--header-height);
+    min-height: calc(100vh - var(--header-height));
+    align-items: flex-start;
 }
 
 .checkout-left {
@@ -20,7 +23,7 @@
   /* make the right column "sticky" so it doesn't get its own scrollbar
      and stays visible while the page scrolls */
   position: sticky;
-  top: 20px;
+  top: var(--header-height);
   align-self: flex-start;
 
   /* avoid any internal scrolling / clipping */

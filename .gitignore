@@ -3,6 +3,11 @@ logs
 *.log
 npm-debug.log*
 yarn-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
@@ -11,6 +16,10 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# Media files (kept on VPS)
+public/videos/*.mp4
+public/videos/*.jpg
 
 # Editor directories and files
 .vscode/*
