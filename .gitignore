@@ -17,11 +17,23 @@ dist
 dist-ssr
 *.local
 
-# Media files (kept on VPS)
-public/videos/*.mp4
-public/videos/*.jpg
+# Media assets — stored in object storage, not in git
+# Keep a local copy in public/ for development but don't commit it
+public/*.jpg
+public/*.jpeg
+public/*.png
+public/*.gif
+public/*.mp4
+public/*.webp
+public/*.svg
+public/videos/
+public/products/
+# Keep logo and vite.svg (small, UI-critical)
+!public/logo.svg
+!public/logo-white.svg
+!public/vite.svg
 
-# Editor directories and files
+.env.production
 .vscode/*
 !.vscode/extensions.json
 .idea
