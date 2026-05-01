@@ -1,25 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useProducts } from "@/context/productContext";
+import { productApi } from "@/services/api";
 import { useCart } from "@/context/cartContext";
+import type { Product } from "@/data/products";
 import "./ProductPage.css";
 
 const ProductPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { getProductById, loading } = useProducts();
   const { addItem } = useCart();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!id) return;
+    
+    setLoading(true);
+    productApi
+      .getById(id)
+      .then((data) => {
+        setProduct(data);
+        setError(null);
+      })
+      .catch((err) => {
+        setError(err instanceof Error ? err.message : "Failed to load product");
+        setProduct(null);
+      })
+      .finally(() => setLoading(false));
+  }, [id]);
 
   if (loading) return <div>Loading...</div>;
-
-  const product = id ? getProductById(id) : undefined;
-
-  if (!product) {
-    return (
-      <main className="product-page">
-        <div>Product not found.</div>
-      </main>
-    );
-  }
+  if (error) return <div>Error: {error}</div>;
+  if (!product) return <div>Product not found.</div>;
 
   const isAvailable = product.status === "ACTIVE";
 
